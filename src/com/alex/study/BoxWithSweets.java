@@ -71,6 +71,7 @@ public class BoxWithSweets implements ToSweets {
 
     @Override
     public void informationAboutAllSweets() {
+        System.out.printf("All information about %s:\n", getBoxName());
         for (TheSweet theSweet : sweets) {
             theSweet.printAllInformation();
         }
