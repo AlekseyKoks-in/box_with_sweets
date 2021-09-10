@@ -11,7 +11,7 @@ public class Candy extends TheSweet{
     @Override
     public String toString() {
         return String.format("%s, weight = %.2f, price = %.2f",
-                this.getName(), this.getWeight(), this.getPrice());
+                getName(), getWeight(), getPrice());
     }
 
     @Override
