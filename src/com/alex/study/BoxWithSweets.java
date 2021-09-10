@@ -5,7 +5,36 @@ import java.util.List;
 
 public class BoxWithSweets implements ToSweets {
 
-    private static List<TheSweet> sweets = new ArrayList<>();
+    private String boxName;
+    private double boxWeight;
+    private double boxPrice;
+
+    public String getBoxName() {
+        return this.boxName;
+    }
+    public double getBoxWeight() {
+        return this.boxWeight;
+    }
+    public double getBoxPrice() {
+        return this.boxPrice;
+    }
+    public void setBoxName(String boxName) {
+        this.boxName = boxName;
+    }
+    public void setBoxWeight(double boxWeight) {
+        this.boxWeight = boxWeight;
+    }
+    public void setBoxPrice(double boxPrice) {
+        this.boxPrice = boxPrice;
+    }
+
+    public BoxWithSweets(String boxName, double boxWeight, double boxPrice) {
+        setBoxName(boxName);
+        setBoxWeight(boxWeight);
+        setBoxPrice(boxPrice);
+    }
+
+    private List<TheSweet> sweets = new ArrayList<>();
 
     @Override
     public void addTheSweet(TheSweet theSweet) {
@@ -24,20 +53,20 @@ public class BoxWithSweets implements ToSweets {
 
     @Override
     public void printWeight() {
-        double boxWeight = 0;
+        double totalWeight = getBoxWeight();
         for (TheSweet theSweet : sweets) {
-            boxWeight += theSweet.getWeight();
+            totalWeight += theSweet.getWeight();
         }
-        System.out.printf("Box weight = %.3f\n", boxWeight);
+        System.out.printf("Box(%s) weight = %.3f\n", getBoxName(), totalWeight);
     }
 
     @Override
     public void printPrice() {
-        double boxPrice = 0;
+        double totalPrice = getBoxPrice();
         for (TheSweet theSweet : sweets) {
-            boxPrice += theSweet.getPrice();
+            totalPrice += theSweet.getPrice();
         }
-        System.out.printf("Box price = %.2f\n", boxPrice);
+        System.out.printf("Box(%s) price = %.2f\n", getBoxName(), totalPrice);
     }
 
     @Override

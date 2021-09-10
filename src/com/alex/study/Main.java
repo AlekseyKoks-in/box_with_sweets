@@ -3,7 +3,7 @@ package com.alex.study;
 public class Main {
 
     public static void main(String[] args) {
-        BoxWithSweets b1 = new BoxWithSweets();
+        BoxWithSweets b1 = new BoxWithSweets("box1", 1, 1);
         b1.addTheSweet(new Candy("candy1", 10.5, 100));
         b1.addTheSweet(new Candy("candy2", 11.5, 110));
         b1.addTheSweet(new Chocolate("chocolate1", 15.5, 150));
