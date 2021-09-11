@@ -1,7 +1,6 @@
 package com.alex.study;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class BoxWithSweets implements ToSweets {
 
@@ -74,6 +73,40 @@ public class BoxWithSweets implements ToSweets {
         System.out.printf("All information about %s:\n", getBoxName());
         for (TheSweet theSweet : sweets) {
             theSweet.printAllInformation();
+        }
+    }
+
+    public double totalWeight() {
+        double totalWeight = getBoxWeight();
+        for (TheSweet theSweet : sweets) {
+            totalWeight += theSweet.getWeight();
+        }
+        return totalWeight;
+    }
+
+    public void removeMinimalWeight(double limit) {
+        Collections.sort(sweets, Comparator.comparingDouble(TheSweet::getWeight));
+        double total = totalWeight();
+        Iterator<TheSweet> iterator = sweets.iterator();
+        while (iterator.hasNext()) {
+            TheSweet s = iterator.next();
+            if (limit < total) {
+                total -= s.getWeight();
+                iterator.remove();
+            }
+        }
+    }
+
+    public void removeMinimalPrice(double limit) {
+        Collections.sort(sweets, Comparator.comparingDouble(TheSweet::getPrice));
+        double total = totalWeight();
+        Iterator<TheSweet> iterator = sweets.iterator();
+        while (iterator.hasNext()) {
+            TheSweet s = iterator.next();
+            if (limit < total) {
+                total -= s.getWeight();
+                iterator.remove();
+            }
         }
     }
 }
