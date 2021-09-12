@@ -86,6 +86,15 @@ public class BoxWithSweets implements ToSweets {
 
     public void removeMinimalWeight(double limit) {
         Collections.sort(sweets, Comparator.comparingDouble(TheSweet::getWeight));
+        limiter(limit);
+    }
+
+    public void removeMinimalPrice(double limit) {
+        Collections.sort(sweets, Comparator.comparingDouble(TheSweet::getPrice));
+        limiter(limit);
+    }
+
+    public void limiter(double limit) {
         double total = totalWeight();
         Iterator<TheSweet> iterator = sweets.iterator();
         while (iterator.hasNext()) {
@@ -97,16 +106,17 @@ public class BoxWithSweets implements ToSweets {
         }
     }
 
-    public void removeMinimalPrice(double limit) {
-        Collections.sort(sweets, Comparator.comparingDouble(TheSweet::getPrice));
-        double total = totalWeight();
-        Iterator<TheSweet> iterator = sweets.iterator();
-        while (iterator.hasNext()) {
-            TheSweet s = iterator.next();
-            if (limit < total) {
-                total -= s.getWeight();
-                iterator.remove();
-            }
+    Comparator<TheSweet> comparatorWeight = new Comparator<TheSweet>() {
+        @Override
+        public int compare(TheSweet s1, TheSweet s2) {
+            return (int) (s1.getWeight() - s2.getWeight());
         }
-    }
+    };
+
+    Comparator<TheSweet> comparatorPrice = new Comparator<TheSweet>() {
+        @Override
+        public int compare(TheSweet s1, TheSweet s2) {
+            return (int) (s1.getPrice() - s2.getPrice());
+        }
+    };
 }

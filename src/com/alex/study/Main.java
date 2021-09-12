@@ -17,8 +17,8 @@ public class Main {
         System.out.println();
 
 
-        b1.removeMinimalWeight(30);
-//        b1.removeMinimalPrice(30);
+        b1.removeMinimalWeight(40);
+//        b1.removeMinimalPrice(40);
         b1.informationAboutAllSweets();
 
     }
